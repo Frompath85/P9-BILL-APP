@@ -34,6 +34,8 @@ export default class {
       .list()
       .then(snapshot => {
         const bills = snapshot
+         /* On trie dans l'ordre par date, affichage dans l'app*/
+         .sort((a, b) => (a.date < b.date) ? 1 : -1)
           .map(doc => {
             try {
               return {

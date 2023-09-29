@@ -8,15 +8,19 @@ export default class {
     this.onNavigate = onNavigate
     this.store = store
     const buttonNewBill = document.querySelector(`button[data-testid="btn-new-bill"]`)
-    if (buttonNewBill) buttonNewBill.addEventListener('click', this.handleClickNewBill)
+    //ouverture de la page nouvelle note de frais
+    if (buttonNewBill) 
+    buttonNewBill.addEventListener('click', this.handleClickNewBill)
+    
     const iconEye = document.querySelectorAll(`div[data-testid="icon-eye"]`)
     if (iconEye) iconEye.forEach(icon => {
+      //ouverture de la modale justificatif image
       icon.addEventListener('click', () => this.handleClickIconEye(icon))
     })
     new Logout({ document, localStorage, onNavigate })
   }
 
-  handleClickNewBill = () => {
+  handleClickNewBill = () => { //verifié avec un test
     this.onNavigate(ROUTES_PATH['NewBill'])
   }
 
@@ -46,7 +50,7 @@ export default class {
             } catch(e) {
               // if for some reason, corrupted data was introduced, we manage here failing formatDate function
               // log the error and return unformatted date in that case
-              console.log(e,'for',doc)
+             // console.log(e,'for',doc)
               return {
                 ...doc,
                 date: doc.date,
@@ -54,7 +58,7 @@ export default class {
               }
             }
           })
-          console.log('length', bills.length)
+         // console.log('length', bills.length)
         return bills
       })
     }

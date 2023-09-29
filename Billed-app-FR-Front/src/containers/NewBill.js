@@ -24,12 +24,12 @@ export default class NewBill {
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
     
-
+// je test l'extension du fichier
     if(fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png") {
       
       console.log("Fichier correct "+fileExtension)
 
-      // pour ne pas saisir une note avec fichier diff du png
+      // pour ne pas saisir une note avec fichier différent du png
       const formData = new FormData()
       const email = JSON.parse(localStorage.getItem("user")).email
       formData.append('file', file)

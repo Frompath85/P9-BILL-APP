@@ -30,9 +30,10 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
-      expect(windowIcon).toBeTruthy()
-
+     // expect(windowIcon).toBeTruthy()
+      expect(windowIcon.classList.value).toMatch("active-icon");
     })
+
     test("Then bills should be ordered from earliest to latest", () => {
        /* On modifie le test pour qu'ils prennent en compte les bills comment ils sont rangés dans la vue */
       document.body.innerHTML = BillsUI({ data: bills.sort((a, b) => (a.date < b.date) ? 1 : -1) })
@@ -42,6 +43,7 @@ describe("Given I am connected as an employee", () => {
       const datesSorted = [...dates].sort(antiChrono)
       expect(dates).toEqual(datesSorted)
     })
+
   })
 
   describe("when i click on Eye icon of a bill",() => {
@@ -83,11 +85,7 @@ describe("Given I am connected as an employee", () => {
  describe("When an error occurs on API", () => {
   beforeEach(() => {
     jest.spyOn(mockStore, "bills")
-    Object.defineProperty(
-        window,
-        "localStorage",
-        { value: localStorageMock }
-    )
+    Object.defineProperty(window,"localStorage",{ value: localStorageMock })
     window.localStorage.setItem("user", JSON.stringify({
       type: "Employee",
       email: "a@a"

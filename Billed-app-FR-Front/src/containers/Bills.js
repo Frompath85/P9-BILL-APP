@@ -37,7 +37,8 @@ export default class {
       .bills()
       .list()
       .then(snapshot => {
-        const bills = snapshot
+        // console.log('length', bills.length)
+        return snapshot
          /* On trie dans l'ordre par date, affichage dans l'app*/
          .sort((a, b) => (a.date < b.date) ? 1 : -1)
           .map(doc => {
@@ -58,8 +59,6 @@ export default class {
               }
             }
           })
-         // console.log('length', bills.length)
-        return bills
       })
     }
   }
